@@ -1,0 +1,22 @@
+/* Global base page transition (very light fade) */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* Dashboard-specific slide + fade transition */
+.dashboard-page-enter-active,
+.dashboard-page-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.dashboard-page-enter-from,
+.dashboard-page-leave-to {
+  opacity: 0;
+  transform: translateX(16px);
+}

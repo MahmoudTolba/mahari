@@ -9,9 +9,10 @@
       <!-- Logo -->
       <div class="flex flex-col items-center gap-3 mb-8">
         <div
-          class="flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 font-bold text-xl"
+          class="flex items-center justify-center w-14 h-14 rounded-2xl "
         >
-          مهاري
+        <img :src="logoIcon" alt="logo" class="w-full h-full">
+          
         </div>
         <div class="text-center">
           <h1 class="text-[30px] font-bold text-[#111827] mb-1">
@@ -118,7 +119,7 @@
 
         <!-- Submit -->
         <button
-          type="submit"
+          @click="navigateTo('/')"
           class="mt-4 w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/40 hover:bg-indigo-700 transition"
         >
           تسجيل الدخول
@@ -128,8 +129,9 @@
         <p class="mt-4 text-center text-xs text-gray-500">
           ليس لديك حساب؟
           <button
+          @click="navigateTo('/register')"
             type="button"
-            class="text-indigo-600 hover:text-indigo-700 font-medium"
+            class="text-indigo-600 hover:text-indigo-700 font-medium cursor-pointer hover:underline"
           >
             إنشاء حساب
           </button>
@@ -142,6 +144,7 @@
 <script setup lang="ts">
 import emailIcon from '~/assets/icons/mail-icon.svg'
 import lockIcon from '~/assets/icons/lock-icon.svg'
+import logoIcon from '~/assets/images/logo.png'
 
 const email = ref('')
 const password = ref('')
