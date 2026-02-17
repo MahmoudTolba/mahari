@@ -11,7 +11,9 @@
       <div
         class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-[#FF5757] rounded-lg flex items-center justify-center flex-shrink-0"
       >
-        <i class="ri-alert-line text-sm sm:text-lg md:text-2xl text-white"></i>
+        <!-- <i class="ri-alert-line text-sm sm:text-lg md:text-2xl text-white"></i> -->
+         <!-- <img :src="alertIcon" alt="alert" class="w-full h-full"> -->
+          <img src="~/assets/icons/alert-icon.svg" alt="alert" class="w-full h-full p-1">
       </div>
       <div class="flex-1 min-w-0">
         <h3 class="font-bold text-gray-900 mb-0.5 text-xs sm:text-sm md:text-base">تنبيه: رصيد منخفض</h3>
@@ -24,7 +26,16 @@
         class="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-white/50 rounded-lg cursor-pointer flex-shrink-0"
         @click="showLowBalanceAlert = false"
       >
-        <i class="ri-close-line text-base sm:text-xl text-gray-600"></i>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="black"
+          stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6" />
+        </svg>
       </button>
     </div>
 
@@ -50,7 +61,11 @@
             class="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg flex items-center justify-center"
             :class="stat.color"
           >
-            <i :class="[stat.icon, 'text-base sm:text-xl md:text-2xl text-white']"></i>
+            <img
+              :src="stat.icon"
+              :alt="stat.label"
+              class="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain"
+            />
           </div>
         </div>
         <h3 class="text-base sm:text-2xl md:text-3xl font-bold text-gray-900 mb-0.5 leading-tight">
@@ -340,6 +355,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import walletIcon from "~/assets/icons/wallet-icon.svg";
+import bagIcon from "~/assets/icons/bag-icon.svg";
+import calenderIcon from "~/assets/icons/calender-icon.svg";
+import chartIcon from "~/assets/icons/chart-icon.svg";
 
 definePageMeta({
   layout: "dashboard",
@@ -357,25 +376,25 @@ const stats = [
   {
     label: "الرصيد الحالي",
     value: "12,450 ر.س",
-    icon: "ri-wallet-line",
+    icon: walletIcon,
     color: "bg-[#5270FF]",
   },
   {
     label: "عدد الطلبات",
     value: "48",
-    icon: "ri-shopping-bag-line",
+    icon: bagIcon,
     color: "bg-green-500",
   },
   {
     label: "طلبات اليوم",
     value: "8",
-    icon: "ri-calendar-line",
+    icon: calenderIcon,
     color: "bg-purple-500",
   },
   {
     label: "إجمالي المشتريات",
     value: "156,800 ر.س",
-    icon: "ri-line-chart-line",
+    icon: chartIcon,
     color: "bg-orange-500",
   },
 ];
@@ -410,4 +429,5 @@ const recentOrders = [
 const isQuickActionActive = (href: string) => {
   return route.path === href || route.path.startsWith(href + "/");
 };
+const alertIcon = ref('~/assets/icons/alert-icon.svg');
 </script>

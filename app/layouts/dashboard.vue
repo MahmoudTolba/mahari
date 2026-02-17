@@ -77,7 +77,11 @@
               "
               @click="showSidebar = false"
             >
-              <i :class="`${item.icon} text-xl`"></i>
+              <img
+                :src="isActive(item.href) ? item.iconActive : item.iconInactive"
+                :alt="item.label"
+                class="w-5 h-5 object-contain"
+              />
               <span>{{ item.label }}</span>
             </NuxtLink>
           </nav>
@@ -94,19 +98,50 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import bHomeIcon from "~/assets/icons/bhome-icon.svg";
+import wHomeIcon from "~/assets/icons/whome-icon.svg";
+import bCardsIcon from "~/assets/icons/bcards-icon.svg";
+import wCardsIcon from "~/assets/icons/wcards-icon.svg";
+import bOrdersIcon from "~/assets/icons/borders-icon.svg";
+import wOrdersIcon from "~/assets/icons/worders-icon.svg";
+import bReportsIcon from "~/assets/icons/breports-icon.svg";
+import wReportsIcon from "~/assets/icons/wreports-icon.svg";
+import bApiIcon from "~/assets/icons/bapi-icon.svg";
+import wApiIcon from "~/assets/icons/wapi-icon.svg";
 
 const route = useRoute();
 const showSidebar = ref(false);
 
 const menuItems = [
-  { href: "/", label: "لوحة التحكم", icon: "ri-dashboard-line" },
-  { href: "/dashboard/cards", label: "الكروت", icon: "ri-bank-card-line" },
-  { href: "/dashboard/orders", label: "الطلبات", icon: "ri-shopping-bag-line" },
-  { href: "/dashboard/reports", label: "التقارير", icon: "ri-file-chart-line" },
+  {
+    href: "/",
+    label: "لوحة التحكم",
+    iconActive: wHomeIcon,
+    iconInactive: bHomeIcon,
+  },
+  {
+    href: "/dashboard/cards",
+    label: "الكروت",
+    iconActive: wCardsIcon,
+    iconInactive: bCardsIcon,
+  },
+  {
+    href: "/dashboard/orders",
+    label: "الطلبات",
+    iconActive: wOrdersIcon,
+    iconInactive: bOrdersIcon,
+  },
+  {
+    href: "/dashboard/reports",
+    label: "التقارير",
+    iconActive: wReportsIcon,
+    iconInactive: bReportsIcon,
+  },
   {
     href: "/dashboard/api-docs",
     label: "API Documentation",
-    icon: "ri-code-box-line",
+    iconActive: wApiIcon,
+    iconInactive: bApiIcon,
   },
 ];
 
