@@ -95,7 +95,8 @@
                   : 'bg-[#5270FF] hover:bg-[#4160EE]'
               "
             >
-              <i class="ri-shopping-cart-line text-sm sm:text-lg md:text-xl"></i>
+              <!-- <i class="ri-shopping-cart-line text-sm sm:text-lg md:text-xl"></i> -->
+              <img src="~/assets/icons/shop-icon.svg" alt="shopping-cart" class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 object-contain">
               <span>شراء كروت شحن</span>
             </button>
           </NuxtLink>
@@ -110,7 +111,8 @@
                   : 'bg-green-500 hover:bg-green-600'
               "
             >
-              <i class="ri-file-list-line text-sm sm:text-lg md:text-xl"></i>
+              <!-- <i class="ri-file-list-line text-sm sm:text-lg md:text-xl"></i> -->
+              <img src="~/assets/icons/paper-icon.svg" alt="file" class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 object-contain">
               <span>عرض الطلبات</span>
             </button>
           </NuxtLink>
@@ -125,7 +127,8 @@
                   : 'bg-purple-500 hover:bg-purple-600'
               "
             >
-              <i class="ri-bar-chart-line text-sm sm:text-lg md:text-xl"></i>
+              <!-- <i class="ri-bar-chart-line text-sm sm:text-lg md:text-xl"></i> -->
+              <img src="~/assets/icons/chart-icon.svg" alt="chart" class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 object-contain">
               <span>التقارير والإحصائيات</span>
             </button>
           </NuxtLink>
@@ -142,7 +145,19 @@
             <div
               class="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0"
             >
-              <i class="ri-check-line text-sm sm:text-lg md:text-xl text-green-600"></i>
+              <!-- <i class="ri-check-line text-sm sm:text-lg md:text-xl text-green-600"></i> -->
+                             <svg xmlns="http://www.w3.org/2000/svg" 
+                                  viewBox="0 0 24 24" 
+                                  fill="none" 
+                                  stroke="#16a34a" 
+                                  stroke-width="2" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round"
+                                  width="24" 
+                                  height="24">
+                                <path d="M20 6L9 17L4 12"/>
+                             </svg>
+
             </div>
             <div class="flex-1 text-right min-w-0">
               <p class="font-semibold text-gray-900 text-[11px] sm:text-sm md:text-base truncate">
@@ -159,7 +174,8 @@
             <div
               class="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0"
             >
-              <i class="ri-shopping-bag-line text-sm sm:text-lg md:text-xl text-blue-600"></i>
+              <!-- <i class="ri-shopping-bag-line text-sm sm:text-lg md:text-xl text-blue-600"></i> -->
+              <img src="~/assets/icons/blue-order.svg" alt="bag" class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 object-contain">
             </div>
             <div class="flex-1 text-right min-w-0">
               <p class="font-semibold text-gray-900 text-[11px] sm:text-sm md:text-base truncate">
@@ -178,7 +194,8 @@
             <div
               class="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0"
             >
-              <i class="ri-wallet-line text-sm sm:text-lg md:text-xl text-purple-600"></i>
+              <!-- <i class="ri-wallet-line text-sm sm:text-lg md:text-xl text-purple-600"></i> -->
+              <img src="~/assets/icons/pur-icon.svg" alt="wallet" class="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 object-contain">
             </div>
             <div class="flex-1 text-right min-w-0">
               <p class="font-semibold text-gray-900 text-[11px] sm:text-sm md:text-base truncate">
@@ -338,18 +355,34 @@
                 </span>
               </td>
               <td class="py-2.5 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4">
-                <button
-                  type="button"
-                  class="text-[#5270FF] hover:underline text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap cursor-pointer"
-                >
-                  عرض
-                </button>
+            <button
+              type="button"
+              class="text-[#ffffff]  text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap cursor-pointer bg-blue-500 py-2 px-4 rounded-lg"
+              @click="showSecurityModal = true; selectedOrderForCodes = order"
+            >
+              عرض الاكواد
+            </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
+    <!-- Security Verification Modal -->
+    <SecurityVerificationModal
+      v-model="showSecurityModal"
+      @verify="onVerify"
+      @cancel="showSecurityModal = false"
+      @resend="onResendCode"
+    />
+
+    <!-- Order Codes Modal -->
+    <OrderCodesModal
+      v-if="selectedOrderForCodes"
+      v-model="showOrderCodesModal"
+      :order-id="selectedOrderForCodes.id"
+    />
   </div>
 </template>
 
@@ -371,6 +404,9 @@ definePageMeta({
 const route = useRoute();
 
 const showLowBalanceAlert = ref(true);
+const showSecurityModal = ref(false);
+const showOrderCodesModal = ref(false);
+const selectedOrderForCodes = ref<{ id: string } | null>(null);
 
 const stats = [
   {
@@ -429,5 +465,17 @@ const recentOrders = [
 const isQuickActionActive = (href: string) => {
   return route.path === href || route.path.startsWith(href + "/");
 };
+
+const onVerify = (code: string) => {
+  showSecurityModal.value = false;
+  // TODO: Wire to API - verify OTP, then fetch codes. For now, open codes modal directly.
+  showOrderCodesModal.value = true;
+};
+
+const onResendCode = () => {
+  // TODO: Wire to API - resend verification code
+  console.log("Resend code for order:", selectedOrderForCodes.value?.id);
+};
+
 const alertIcon = ref('~/assets/icons/alert-icon.svg');
 </script>

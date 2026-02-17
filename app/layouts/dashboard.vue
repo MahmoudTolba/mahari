@@ -53,14 +53,14 @@
         <div class="p-4 h-full flex flex-col">
           <!-- Close button (mobile only) -->
           <div class="flex items-center justify-between mb-4 md:hidden">
-            <span class="text-sm font-semibold text-gray-700">القائمة</span>
+            <span class="text-sm font-normal text-gray-700">القائمة</span>
             <button
               type="button"
               class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 text-gray-500"
               @click="showSidebar = false"
               aria-label="إغلاق القائمة الجانبية"
             >
-              <i class="ri-close-line text-xl"></i>
+                    <i class="ri-close-line text-xl"></i>
             </button>
           </div>
 
@@ -69,7 +69,7 @@
               v-for="item in menuItems"
               :key="item.href"
               :href="item.href"
-              class="flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-colors cursor-pointer"
+              class="flex items-center gap-3 px-4 py-3 rounded-lg font-normal transition-colors cursor-pointer"
               :class="
                 isActive(item.href)
                   ? 'bg-[#5270FF] text-white'
@@ -120,25 +120,25 @@ const menuItems = [
     iconInactive: bHomeIcon,
   },
   {
-    href: "/dashboard/cards",
+    href: "/cards",
     label: "الكروت",
     iconActive: wCardsIcon,
     iconInactive: bCardsIcon,
   },
   {
-    href: "/dashboard/orders",
+    href: "/orders",
     label: "الطلبات",
     iconActive: wOrdersIcon,
     iconInactive: bOrdersIcon,
   },
   {
-    href: "/dashboard/reports",
+    href: "/reports",
     label: "التقارير",
     iconActive: wReportsIcon,
     iconInactive: bReportsIcon,
   },
   {
-    href: "/dashboard/api-docs",
+    href: "/api-docs",
     label: "API Documentation",
     iconActive: wApiIcon,
     iconInactive: bApiIcon,

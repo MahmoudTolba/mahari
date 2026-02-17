@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   app: {
     head: {
+      htmlAttrs: {
+        dir: "rtl",
+        lang: "ar",
+      },
       title: "مهارى",
       meta: [{ name: "description", content: "مهارى" }],
       link: [
