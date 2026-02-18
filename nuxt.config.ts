@@ -18,6 +18,10 @@ export default defineNuxtConfig({
           type: "image/png",
           href: "/logo.png",
         },
+        {
+          rel: "stylesheet",
+          href: "https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css",
+        },
       ],
     },
     pageTransition: {

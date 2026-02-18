@@ -3,11 +3,12 @@
     <div
       v-if="modelValue"
       class="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-2 sm:p-4"
-      
       @click.self="handleClose"
+      
     >
       <div
         class="bg-white rounded-2xl sm:rounded-xl shadow-lg w-full max-w-lg sm:max-w-xl max-h-[90vh] flex flex-col overflow-hidden"
+        dir="ltr"
         @click.stop
       >
         <!-- Header -->

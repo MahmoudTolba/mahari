@@ -85,7 +85,7 @@
           إجراءات سريعة
         </h2>
         <div class="flex flex-col gap-1.5 sm:gap-3 md:gap-4">
-          <NuxtLink to="/dashboard/cards">
+          <NuxtLink to="/cards">
             <button
               type="button"
               class="w-full text-white py-2 sm:py-3 px-2.5 sm:px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm md:text-base cursor-pointer active:scale-95"
@@ -101,7 +101,7 @@
             </button>
           </NuxtLink>
 
-          <NuxtLink to="/dashboard/orders">
+          <NuxtLink to="/orders">
             <button
               type="button"
               class="w-full text-white py-2 sm:py-3 px-2.5 sm:px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm md:text-base cursor-pointer active:scale-95"
@@ -117,12 +117,12 @@
             </button>
           </NuxtLink>
 
-          <NuxtLink to="/dashboard/reports">
+          <NuxtLink to="/reports">
             <button
               type="button"
               class="w-full text-white py-2 sm:py-3 px-2.5 sm:px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm md:text-base cursor-pointer active:scale-95"
               :class="
-                isQuickActionActive('/dashboard/reports')
+                isQuickActionActive('/reports')
                   ? 'bg-purple-600 shadow-md'
                   : 'bg-purple-500 hover:bg-purple-600'
               "
