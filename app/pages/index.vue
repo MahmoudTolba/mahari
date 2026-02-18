@@ -214,7 +214,7 @@
       <div class="flex items-center justify-between mb-2.5 sm:mb-4 md:mb-6">
         <h2 class="text-sm sm:text-lg md:text-xl font-bold text-gray-900">آخر الطلبات</h2>
         <NuxtLink
-          to="/dashboard/orders"
+          to="/orders"
           class="text-[#5270FF] text-[10px] sm:text-sm font-semibold hover:underline cursor-pointer"
         >
           عرض الكل

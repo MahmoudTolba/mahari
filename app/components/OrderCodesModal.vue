@@ -2,16 +2,16 @@
   <Teleport to="body">
     <div
       v-if="modelValue"
-      class="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
+      class="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-2 sm:p-4"
       
       @click.self="handleClose"
     >
       <div
-        class="bg-white rounded-xl shadow-lg max-w-xl w-full max-h-[90vh] flex flex-col overflow-hidden"
+        class="bg-white rounded-2xl sm:rounded-xl shadow-lg w-full max-w-lg sm:max-w-xl max-h-[90vh] flex flex-col overflow-hidden"
         @click.stop
       >
         <!-- Header -->
-        <div class="flex items-center justify-between p-4 border-b">
+        <div class="flex items-center justify-between px-3 py-3 sm:p-4 border-b">
           <div class="flex items-center gap-3">
             <button
               type="button"
@@ -29,7 +29,7 @@
               </svg>
             </button>
             <div
-              class="flex items-center gap-1.5 px-2.5 py-1 border border-red-500 bg-red-400 rounded-lg text-white text-sm font-medium"
+              class="flex items-center gap-1.5 px-2.5 py-1 border border-red-500 bg-red-400 rounded-lg text-white text-xs sm:text-sm font-medium"
             >
             <span>{{ formattedTime }}</span>
               <svg
@@ -44,16 +44,16 @@
               
             </div>
           </div>
-          <h2 class="text-lg font-bold text-gray-900">
+          <h2 class="text-base sm:text-lg font-bold text-gray-900">
             {{ orderId }}
             أكواد الطلب 
           </h2>
         </div>
 
         <!-- Warning banner -->
-        <div class="mx-4 mt-4 flex items-start justify-end gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg text-right">
+        <div class="mx-3 sm:mx-4 mt-3 sm:mt-4 flex items-start justify-end gap-2 p-2.5 sm:p-3 bg-amber-50 border border-amber-200 rounded-lg text-right">
        
-          <p class="text-sm text-amber-800">
+          <p class="text-xs sm:text-sm text-amber-800">
             سيتم إخفاء الأكواد تلقائياً بعد انتهاء الوقت. تأكد من حفظها في مكان آمن.          </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@
         </div>
 
         <!-- Code list -->
-        <div class="flex-1 overflow-y-auto p-4 space-y-2">
+        <div class="flex-1 overflow-y-auto px-3 sm:px-4 py-3 sm:py-4 space-y-2">
           <div
             v-for="(code, index) in displayCodes"
             :key="index"
@@ -89,9 +89,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
             </button>
-            <span class="flex-1 text-center font-mono text-gray-900">{{ code }}</span>
+            <span class="flex-1 text-center font-mono text-xs sm:text-sm md:text-base text-gray-900">
+              {{ code }}
+            </span>
             <div
-              class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold flex-shrink-0"
+              class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-blue-500 text-white text-xs sm:text-sm font-semibold flex-shrink-0"
             >
               {{ index + 1 }}
             </div>
